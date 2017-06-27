@@ -29,7 +29,7 @@ public class Transaction implements ConvertToJsonInterface, LoadFromJsonInterfac
             jsonObject.put(TransactionFieldName.TOTAL_AMOUNT.getFieldName(),this.totalAmount);
             jsonObject.put(TransactionFieldName.TRANSACTION_TYPE.getFieldName(),this.transactionType);
             jsonObject.put(TransactionFieldName.REFERENCE_ID.getFieldName(),this.referenceId);
-            jsonObject.put(TransactionFieldName.CREATED_ON.getFieldName(),(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US)).format(this.createdOn));
+            jsonObject.put(TransactionFieldName.CREATED_ON.getFieldName(),this.createdOn);
         }catch(JSONException e){
             e.printStackTrace();
         }
@@ -41,14 +41,15 @@ public class Transaction implements ConvertToJsonInterface, LoadFromJsonInterfac
         if (!StringUtils.isBlank(value)) {
             this.id = UUID.fromString(value);
         }
-
         this.cashierId = rawJsonObject.optString( TransactionFieldName.CASHIER_ID.getFieldName());
-        this.referenceId = UUID.fromString(rawJsonObject.optString(TransactionFieldName.REFERENCE_ID.getFieldName()));
+        this.referenceId = rawJsonObject.optString(TransactionFieldName.REFERENCE_ID.getFieldName());
         this.transactionType = TransactionType.mapName(
                 rawJsonObject.optString(TransactionFieldName.TRANSACTION_TYPE.getFieldName())
         );
         this.totalAmount = rawJsonObject.optInt( TransactionFieldName.TOTAL_AMOUNT.getFieldName());
-        value = rawJsonObject.optString(TransactionFieldName.CREATED_ON.getFieldName());
+        value = rawJsonObject.optString(TransactionFieldName.CREATED_ON.getFieldName()
+        );
+
         if (!StringUtils.isBlank(value)) {
             try {
                 this.createdOn = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US).parse(value);
@@ -63,14 +64,14 @@ public class Transaction implements ConvertToJsonInterface, LoadFromJsonInterfac
     public Transaction(){
         this.id = new UUID (0,0);
         this.cashierId = StringUtils.EMPTY;
-        this.referenceId = new UUID (0,0);
+        this.referenceId = StringUtils.EMPTY;
         this.totalAmount = 0;
         this.transactionType = TransactionType.NOT_DEFINED;
     }
 
     private UUID id;
     private String cashierId;
-    private UUID referenceId;
+    private String referenceId;
     private int totalAmount;
     private TransactionType transactionType;
     private Date createdOn;
@@ -78,7 +79,7 @@ public class Transaction implements ConvertToJsonInterface, LoadFromJsonInterfac
 
     public UUID getId() { return this.id;}
     public String getCashierId() {return this.cashierId;}
-    public UUID getReferenceId() {return this.referenceId;}
+    public String getReferenceId() {return this.referenceId;}
     public int getTotalAmount(){return this.totalAmount;}
     public TransactionType getTransactionType(){return this.transactionType;}
     public Date getCreatedOn() {
@@ -94,7 +95,7 @@ public class Transaction implements ConvertToJsonInterface, LoadFromJsonInterfac
         this.cashierId = cashierId;
         return this;
     }
-    public Transaction setReferenceId(UUID referenceId) {
+    public Transaction setReferenceId(String referenceId) {
         this.referenceId = referenceId;
         return this;
     }

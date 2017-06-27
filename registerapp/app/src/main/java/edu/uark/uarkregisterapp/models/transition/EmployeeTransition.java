@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import edu.uark.uarkregisterapp.commands.converters.ByteToUUIDConverterCommand;
 import edu.uark.uarkregisterapp.commands.converters.UUIDToByteConverterCommand;
+
 import edu.uark.uarkregisterapp.models.api.Employee;
 import edu.uark.uarkregisterapp.models.api.enums.EmployeeClassification;
 
@@ -121,6 +122,7 @@ public class EmployeeTransition implements Parcelable {
 			return new EmployeeTransition[size];
 		}
 	};
+
 
 	public EmployeeTransition() {
 		this.active = false;

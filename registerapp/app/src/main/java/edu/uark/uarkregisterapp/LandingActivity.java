@@ -159,4 +159,9 @@ public class LandingActivity extends AppCompatActivity {
 
 		private AlertDialog signInAlert;
 	}
+
+	public void createEmployeeButtonOnClick(View view) {
+		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+		startActivity(intent);
+	}
 }

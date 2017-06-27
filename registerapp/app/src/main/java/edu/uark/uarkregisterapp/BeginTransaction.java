@@ -14,6 +14,7 @@ import java.util.UUID;
 import edu.uark.uarkregisterapp.models.api.Transaction;
 import edu.uark.uarkregisterapp.models.api.enums.TransactionType;
 import edu.uark.uarkregisterapp.models.api.services.TransactionService;
+import edu.uark.uarkregisterapp.models.transition.TransactionTransition;
 
 /**
  * Created by me or you on 6/25/2017.
@@ -28,12 +29,12 @@ public class BeginTransaction extends AppCompatActivity{
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
     }
 
-    public void saveButtonClick(View view){
+    public void saveButtonOnClick(View view){
         (new CreateTransactionTask()).execute(
                 (new Transaction()).
                         setId(UUID.randomUUID()).
                         setCashierId(this.getCashierIdText().getText().toString()).
-                        setReferenceId(new UUID(0,0)).
+                        setReferenceId(this.getReferenceIdText().getText().toString()).
                         setTotalAmount(Integer.parseInt(this.getTotalAmountText().getText().toString())).
                         setTransactionType(TransactionType.SALE)
         );
@@ -60,8 +61,17 @@ public class BeginTransaction extends AppCompatActivity{
     }
 
     private EditText getTotalAmountText() {
-        return  (EditText) this.findViewById(R.id.edit_text_transaction_create_cashier_id);
+        return  (EditText) this.findViewById(R.id.edit_text_transaction_create_total_amount);
+    }
+        private EditText getReferenceIdText() {
+        return (EditText) this.findViewById(R.id.edit_text_transaction_create_reference_id);
+
     }
 
 
+/*
+   private EditText getTransactionTypeText() {
+        return (EditText) this.findViewById(R.id.edit_text_Transaction_TransactionType_input);
+    }
+*/
 }

@@ -136,39 +136,19 @@ INSERT INTO employee VALUES (
 
 
 
-CREATE TABLE transactionentity (
-
- id uuid NOT NULL,
-
-  lookupcode character varying(32) NOT NULL DEFAULT(''),
-
-  price int NOT NULL DEFAULT(0),
-
-  quantity int NOT NULL DEFAULT(0),
-
-   CONSTRAINT record_transactionentity PRIMARY KEY (id)
-
-) WITH (
-
-  OIDS=FALSE
-
-);
-
-
-
 
 
 CREATE TABLE transaction (
 
   id uuid NOT NULL,
 
-  cashierid character varying(32) NOT NULL DEFAULT(''),
+  cashierid character varying(128) NOT NULL DEFAULT(''),
 
   totalamount int NOT NULL DEFAULT(0),
 
   transactiontype int NOT NULL DEFAULT(0),
 
-  referenceid uuid NOT NULL,
+  referenceid character varying(128) NOT NULL DEFAULT(''),
 
   createdon timestamp without time zone NOT NULL DEFAULT now(),
 
@@ -190,8 +170,8 @@ INSERT INTO transaction VALUES (
 
      , '0'
 
-     , '00000000-0000-0000-0000-000000000000'
+     , 'sorry'
 
-	 , current_timestamp
+	, current_timestamp
 
 );

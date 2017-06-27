@@ -18,7 +18,7 @@ public class TransactionService extends BaseRemoteService {
     private static final String TAG = TransactionService.class.getSimpleName();
     public Transaction putTransaction(Transaction transaction) {
         JSONObject rawJsonObject = this.putSingle(
-                (new PathElementInterface[]{ TransactionApiMethod.TRANSACTION , ApiLevel.ONE,TransactionApiMethod.SALE }), transaction.convertToJson()
+                (new PathElementInterface[]{ TransactionApiMethod.TRANSACTION , ApiLevel.ONE, TransactionApiMethod.SALE }), transaction.convertToJson()
         );
 
         if (rawJsonObject != null) {

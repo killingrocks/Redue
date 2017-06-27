@@ -53,4 +53,5 @@
     <string name="edit_text_hint_transaction_create_reference_id">Reference ID</string>
     <string name="edit_text_hint_transaction_create_transaction_type">Sale or Return</string>
     <string name="title_activity_begin_transaction">BeginTransaction</string>
+    <string name= "button_create_employee_button"> New Employee </string>
 </resources>
